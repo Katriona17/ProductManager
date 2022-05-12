@@ -1,9 +1,20 @@
 package ru.netology.manager;
 
 public class Product {
-    private int id;
-    private String title;
-    private int price;
+    protected int id;
+    protected String title;
+    protected int price;
+
+    public Product() {
+
+    }
+
+    public Product(int id, String title, int price) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+
+    }
 
     public int getPrice() {
         return price;

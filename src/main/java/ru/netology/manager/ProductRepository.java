@@ -1,34 +1,35 @@
 package ru.netology.manager;
 
 public class ProductRepository {
-    private Product[] items = new Product[0];
+    private Product[] products = new Product[0];
 
-    public void save(Product item) {
-        int length = items.length + 1;
+
+
+    public void save(Product product) {
+        int length = products.length + 1;
 
         Product[] tmp = new Product[length];
-        for (int i = 0; i < items.length; i++) {
-            tmp[i] = items[i];
+        for (int i = 0; i < products.length; i++) {
+            tmp[i] = products[i];
         }
         int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
+        tmp[lastIndex] = product;
+        products = tmp;
     }
 
     public void removeById(int id) {
-        int length = items.length - 1;
-        Product[] tmp = new Product[length];
-        int index = 0;
-        for (Product item : items) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
+        Product[] tmp = new Product[products.length -1];
+        int i = 0;
+        for (Product product : products) {
+            if (product.getId() != id) {
+                tmp[i] = product;
+                i++;
             }
         }
-        items = tmp;
+        products = tmp;
     }
 
     public Product[] findAll() {
-        return items;
+        return products;
     }
 }

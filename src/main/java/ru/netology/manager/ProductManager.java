@@ -1,17 +1,19 @@
 package ru.netology.manager;
 
 public class ProductManager {
-    protected ProductRepository repository = new ProductRepository();;
+    protected Product[] products = new Product[0];
+    protected ProductRepository repository = new ProductRepository();
 
-    public ProductManager (ProductRepository repository) {
+
+    public ProductManager(ProductRepository repository) {
         this.repository = repository;
     }
 
-    public ProductManager () {
+    public ProductManager() {
     }
 
-    public void add (Product item) {
-        repository.save(item);
+    public void add(Product product) {
+        repository.save(product);
     }
 
     public Product[] getAll() {
@@ -26,16 +28,30 @@ public class ProductManager {
 
     public Product[] searchBy(String text) {
         Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
-        for (Product product: repository.findAll()) {
+        for (Product product : repository.findAll()) {
             if (matches(product, text)) {
                 Product[] tmp = new Product[result.length + 1];
-
+                for (int i = 0; i < result.length; i++) {
+                    tmp[i] = result[i];
+                }
                 tmp[tmp.length - 1] = product;
                 result = tmp;
                 // "добавляем в конец" массива result продукт product
             }
         }
         return result;
+    }
+
+    public void removeById(int id) {
+        Product[] tmp = new Product[products.length - 1];
+        int i = 0;
+        for (Product product : products) {
+            if (product.getId() != id) {
+                tmp[i] = product;
+                i++;
+            }
+        }
+        products = tmp;
     }
 
 
@@ -47,6 +63,7 @@ public class ProductManager {
         }
 
     }
-}
+ }
 
-}
+
+
