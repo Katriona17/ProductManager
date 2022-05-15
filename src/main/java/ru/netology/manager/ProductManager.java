@@ -27,23 +27,23 @@ public class ProductManager {
     }
 
     public Product[] searchBy(String text) {
-        Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
+        Product[] result = new Product[0];
         for (Product product : repository.findAll()) {
-            if (matches(product, text)) {
-                Product[] tmp = new Product[result.length + 1];
-                for (int i = 0; i < result.length; i++) {
+            if (matches(product, text)){
+                Product[] tmp = new Product[result.length +1];
+                for (int i =0; i< result.length; i++) {
                     tmp[i] = result[i];
                 }
                 tmp[tmp.length - 1] = product;
                 result = tmp;
-                // "добавляем в конец" массива result продукт product
             }
         }
         return result;
     }
 
     public void removeById(int id) {
-        Product[] tmp = new Product[products.length - 1];
+        int length = products.length - 1;
+        Product[] tmp = new Product[length];
         int i = 0;
         for (Product product : products) {
             if (product.getId() != id) {

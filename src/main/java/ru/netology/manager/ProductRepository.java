@@ -18,7 +18,8 @@ public class ProductRepository {
     }
 
     public void removeById(int id) {
-        Product[] tmp = new Product[products.length -1];
+        int length = products.length - 1;
+        Product[] tmp = new Product[length];
         int i = 0;
         for (Product product : products) {
             if (product.getId() != id) {

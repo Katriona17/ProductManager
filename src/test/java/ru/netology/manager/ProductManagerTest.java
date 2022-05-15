@@ -1,7 +1,6 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
-import ru.netology.manager.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +19,7 @@ class ProductManagerTest {
      manager.add(number4);
 
      Product[] expected = {number4, number1};
-     Product[] actual =manager.getAll();
+     Product[] actual = manager.getAll();
 
      assertArrayEquals(expected, actual);
     }
@@ -30,6 +29,7 @@ class ProductManagerTest {
     @Test
     void shouldSearchByText() {
      ProductManager manager = new ProductManager();
+     //ProductRepository repository = new ProductRepository();
 
      manager.add(number1);
      manager.add(number2);
@@ -44,18 +44,18 @@ class ProductManagerTest {
 
     @Test
     void shouldRemoveById() {
-     ProductManager manager = new ProductManager();
+     ProductRepository repository = new ProductRepository();
 
-     manager.add(number1);
-     manager.add(number2);
-     manager.add(number3);
-     manager.add(number4);
+     repository.save(number1);
+     repository.save(number2);
+     repository.save(number3);
+     repository.save(number4);
 
-     manager.removeById(2);
+     repository.removeById(2);
 
 
      Product[] expected = {number1, number3, number4};
-     Product[] actual = manager.getAll();
+     Product[] actual = repository.findAll();
 
      assertArrayEquals(expected, actual);
     }
