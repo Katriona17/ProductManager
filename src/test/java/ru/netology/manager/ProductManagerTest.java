@@ -9,6 +9,7 @@ class ProductManagerTest {
    Product number2 = new Smartphone (2, "Xiaomi Mi Lite", 300, "Xiaomi");
    Product number3 = new Smartphone(3, "Samsung Galaxy", 400, "Samsung");
    Product number4 = new Book (4, "Poems", 150, "S. Esenin");
+   Product number5 = new Smartphone (5, "Samsung Galaxy 7", 350, "Samsung");
 
 
     @Test
@@ -37,9 +38,25 @@ class ProductManagerTest {
      manager.add(number4);
 
      Product[] expected = {number4};
-     Product[] actual = manager.searchBy("Esenin");
+     Product[] actual = manager.searchBy("Poems");
 
      assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSearchByTextOver1() {
+     ProductManager manager = new ProductManager();
+     manager.add(number1);
+     manager.add(number2);
+     manager.add(number3);
+     manager.add(number4);
+     manager.add(number5);
+
+     Product[] expected = {number3, number5};
+     Product[] actual = manager.searchBy("Samsung");
+
+     assertArrayEquals(expected, actual);
+
     }
 
     @Test
@@ -61,6 +78,15 @@ class ProductManagerTest {
     }
 
     @Test
-    void matches() {
+    void shouldFindMatches() {
+     ProductManager manager = new ProductManager();
+
+     String text = "Xiaomi";
+
+     Boolean expected = true;
+     Boolean actual = manager.matches(number2, text);
+
+     assertEquals(expected, actual);
+
     }
 }

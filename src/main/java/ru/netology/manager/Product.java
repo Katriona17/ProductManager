@@ -25,7 +25,6 @@ public class Product {
     }
 
 
-
     public String getTitle() {
         return title;
     }
@@ -33,7 +32,6 @@ public class Product {
     public void setTitle(String title) {
         this.title = title;
     }
-
 
 
     public int getId() {

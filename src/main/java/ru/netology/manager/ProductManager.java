@@ -29,9 +29,9 @@ public class ProductManager {
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];
         for (Product product : repository.findAll()) {
-            if (matches(product, text)){
-                Product[] tmp = new Product[result.length +1];
-                for (int i =0; i< result.length; i++) {
+            if (matches(product, text)) {
+                Product[] tmp = new Product[result.length + 1];
+                for (int i = 0; i < result.length; i++) {
                     tmp[i] = result[i];
                 }
                 tmp[tmp.length - 1] = product;
@@ -41,20 +41,6 @@ public class ProductManager {
         return result;
     }
 
-    public void removeById(int id) {
-        int length = products.length - 1;
-        Product[] tmp = new Product[length];
-        int i = 0;
-        for (Product product : products) {
-            if (product.getId() != id) {
-                tmp[i] = product;
-                i++;
-            }
-        }
-        products = tmp;
-    }
-
-
     public boolean matches(Product product, String search) {
         if (product.getTitle().contains(search)) {
             return true;
@@ -63,7 +49,7 @@ public class ProductManager {
         }
 
     }
- }
+}
 
 
 

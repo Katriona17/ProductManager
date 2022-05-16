@@ -4,7 +4,6 @@ public class ProductRepository {
     private Product[] products = new Product[0];
 
 
-
     public void save(Product product) {
         int length = products.length + 1;
 
